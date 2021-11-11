@@ -1,4 +1,5 @@
-Decr:`timescale 1ns/1ps
+`timescale 1ns/1ps
+
 module GeneradorMoore(
 input clk, rst,pulso,
 input  zero,
@@ -8,6 +9,7 @@ reg [2:0] state,next_state;
 
 
 parameter Load=3'b000,Shift=3'b001, Add=3'b010,Decr=3'b011,Ready=3'b100;
+  
 always@ (posedge clk) begin
   if(!rst) state<=Ready;
 	else state<=next_state;
@@ -32,6 +34,9 @@ always@ (*) begin
       if((pulso==0) && (zero==1'b1)) next_state= Ready ;
 		else next_state= Load ;
 		end
+    Ready:begin
+      	next_state= Ready ;
+    end
     default:next_state= Load; 
       
 	endcase

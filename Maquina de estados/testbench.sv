@@ -1,18 +1,22 @@
 // Code your testbench here
 // or browse Examples
 
-
+//`include "Maq_estados.sv"
 `timescale 1ns/1ps
+
+
 
 module testbench;
   
   
-  reg clk,rst;
+  reg clk,rst,q,zero;
   reg  [7:0] multiplicador, multiplicando;
   wire [2:0] ready;
   wire [16:0] producto;
 
-  General Estados(.clk(clk),.rst(rst),.DP_B(multiplicador),.DP_Q(multiplicando),.ready(ready),.Producto(producto));
+ General Estados(.clk(clk),.rst(rst),.q(clk),.Zero(zero),.DP_B(multiplicador),.DP_Q(multiplicando),.ready(ready),.Producto(producto));
+  
+//  GeneradorMoore FSM(.clk(clk),.rst(rst),.pulso(q), .zero(zero),.salida(ready));  
   
 initial begin
         $dumpfile("testbench.vcd");
@@ -28,16 +32,18 @@ initial begin
   end
   
   initial begin
-    rst=1;
+    rst=0;
+    zero=1'b0;
+    //q=0;
 	multiplicador = 8'b00010111;
     multiplicando = 8'b00010011;
-    @(posedge clk) rst=0;
+    @(posedge clk) rst=1;
     //while (ready!= 3'b100)begin
      // @(posedge clk);
      
     //end
     
-    repeat(100)begin
+    repeat(50)begin
       @(posedge clk);
     end
 
