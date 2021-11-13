@@ -1,8 +1,9 @@
-`timescale 1ns/1ps
 
+`timescale 1ns/1ps
 module GeneradorMoore(
 input clk, rst,pulso,
 input  zero,
+output reg Load_regs,Add_regs,Shift_regs,Decre_P,ready,
 output reg [2:0] salida);
 
 reg [2:0] state,next_state;
@@ -16,29 +17,50 @@ always@ (posedge clk) begin
 end
 
 always@ (*) begin
- 
+ 	Load_regs <= 0;
+    Add_regs <= 0;
+    Shift_regs <= 0;
+    Decre_P <= 0;
+    ready <= 0;
 	case(state)
 	Load:begin
-		if(pulso==0) next_state= Shift;
-		else next_state=Add;
+      if(pulso==0) begin
+          next_state= Shift;
+ 
+      	Shift_regs <= 1;
+      end
+		else begin
+          next_state=Add;
+      		Add_regs <= 1;
+        end
 		end
 	Shift:begin 
-      if(pulso==0) next_state= Decr;
-		else next_state=3'b011;
+       next_state= Decr;
+      	Decre_P <= 1;
 		end
 	Add:begin 
-      if(pulso==0) next_state= Shift;
-		else next_state=Shift;
+      next_state= Shift;
+      Shift_regs <= 1;
+		
 		end
 	Decr:begin 
-      if((pulso==0) && (zero==1'b1)) next_state= Ready ;
-		else next_state= Load ;
+      if((pulso==0) && (zero==1)) begin
+        next_state= Ready ;
+        ready <= 1;
+      end
+		else begin
+            next_state= Load ;
+      		Load_regs <= 1;
+        end
 		end
-    Ready:begin
-      	next_state= Ready ;
+  //  Ready:begin
+   //   	next_state= Ready ;
+   //   ready <= 1;
+    //end
+    default:begin
+      next_state= Load; 
+      Load_regs <= 1;
     end
-    default:next_state= Load; 
-      
 	endcase
   salida=state;
 end
