@@ -42,7 +42,7 @@ initial begin
     @(posedge clk) 
     rst<=1;
     multiplicador = 8'b00010111;
-    multiplicando = 8'b00010011;
+    multiplicando = 8'b00010001;
     
     //while(ready != 3'b100) begin
       //@(posedge clk);

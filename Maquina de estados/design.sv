@@ -23,7 +23,7 @@ output reg [2:0] ready);
                       .Shift_regs(SHIFT),
                       .Decre_P(DECR),
                       .ready(READY),
-                      .salida(salida_estados));
+                      .salida(ready));
   
   
   TOP #(.BITS(8)) DUT (.Load_Regs(LOAD),
