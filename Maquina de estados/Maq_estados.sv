@@ -3,7 +3,7 @@
 module GeneradorMoore(
 input clk, rst,pulso,
 input  zero,
-output reg Load_regs,Add_regs,Shift_regs,Decre_P,ready,
+output reg Load_regs,Add_regs,Shift_regs,Decre_P,ready,flag,
 output reg [2:0] salida);
 
 reg [2:0] state,next_state;
@@ -40,6 +40,7 @@ always@ (*) begin
       if( zero==1) begin
         next_state= Ready ;
         ready <= 1;
+        
       end
 		else begin
             //next_state= nulo ;

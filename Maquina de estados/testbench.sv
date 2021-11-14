@@ -9,7 +9,8 @@
 module testbench;
   
   
-  reg clk,rst,q,zero;
+  reg clk,rst;
+  integer flag,flag1;
   reg  [2:0] salida_estados;
   reg  [7:0] multiplicador, multiplicando;
   wire [2:0] ready;
@@ -39,6 +40,8 @@ initial begin
   
   initial begin
     rst<=0;
+    flag<=0;
+    flag1<=0;
     @(posedge clk) 
     rst<=1;
     multiplicador = 8'b00010111;
@@ -50,7 +53,19 @@ initial begin
   	//end
     
     repeat(50)begin
-      @(posedge clk);
+     
+      if(ready ==3'b100) begin flag=flag1+1; end
+      flag1 = flag;
+      if(flag==2)begin 
+        if(ready !=3'b000) begin
+          $monitor("Estado=%b, producto=%b", ready, producto); 
+        end
+      end
+      if(flag==3 && ready ==3'b100) begin
+        $monitor("Final");
+        $finish;
+      end
+       @(posedge clk);
     end
 
     $finish;
@@ -60,7 +75,7 @@ initial begin
   
   initial begin
     
-    $monitor("ready=%b, producto=%b", ready, producto);
+    //monitor("ready=%b, producto=%b", ready, producto);
   end
 
 

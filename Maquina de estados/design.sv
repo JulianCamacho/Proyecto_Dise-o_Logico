@@ -2,7 +2,7 @@
 `include "Maq_estados.sv"
 `timescale 1ns/1ps
 module General(
-input clk, rst, 
+input clk, rst,
 input [7:0] DP_B, DP_Q, //DP_B: multiplicando, DP_Q: multiplicador
 output reg [16:0] Producto,
 output reg [2:0] ready);
@@ -11,6 +11,7 @@ output reg [2:0] ready);
   wire [2:0] cuenta;
   wire [2:0] salida_estados;
   wire LOAD,ADD,SHIFT,DECR,READY;
+  
 
  
   
