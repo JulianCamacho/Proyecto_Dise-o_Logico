@@ -1,0 +1,95 @@
+$date
+	Wed Jan  3 15:36:27 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module TB_GeneradorPulsosMealy $end
+$var wire 1 ! pulso $end
+$var reg 1 " btn $end
+$var reg 1 # clk $end
+$var reg 1 $ rst $end
+$scope module FSM $end
+$var wire 1 " btn $end
+$var wire 1 # clk $end
+$var wire 1 $ rst $end
+$var reg 2 % next_state [1:0] $end
+$var reg 1 ! pulso $end
+$var reg 2 & state [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx &
+b0 %
+0$
+0#
+0"
+0!
+$end
+#5000
+b0 &
+1#
+#10000
+1$
+0#
+#15000
+1#
+#20000
+0#
+#25000
+1#
+#30000
+1!
+b1 %
+0#
+1"
+#35000
+0!
+b1 &
+1#
+#40000
+0#
+#45000
+1#
+#50000
+0#
+#55000
+1#
+#60000
+0#
+#65000
+1#
+#70000
+0#
+#75000
+1#
+#80000
+b0 %
+0#
+0"
+#85000
+b0 &
+1#
+#90000
+0#
+#95000
+1#
+#100000
+0#
+#105000
+1#
+#110000
+0#
+#115000
+1#
+#120000
+0#
+#125000
+1#
+#130000
+0#

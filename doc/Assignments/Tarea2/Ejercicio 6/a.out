@@ -1,0 +1,130 @@
+#! /usr/share/iverilog-0.10.0/bin/vvp
+:ivl_version "0.10.0 (devel)" "(v0_9_6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_0x1af9930 .scope module, "mux2a1_comp" "mux2a1_comp" 2 24;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "D0"
+    .port_info 1 /INPUT 1 "D1"
+    .port_info 2 /INPUT 1 "S"
+    .port_info 3 /OUTPUT 1 "Q"
+o0x7f670f7a10a8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x1b23f10 .functor NOT 1, o0x7f670f7a10a8, C4<0>, C4<0>, C4<0>;
+o0x7f670f7a1018 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x1b23fe0 .functor AND 1, o0x7f670f7a1018, L_0x1b23f10, C4<1>, C4<1>;
+o0x7f670f7a1048 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x1b24100 .functor AND 1, o0x7f670f7a1048, o0x7f670f7a10a8, C4<1>, C4<1>;
+L_0x1b241f0 .functor OR 1, L_0x1b23fe0, L_0x1b24100, C4<0>, C4<0>;
+v0x1afa9b0_0 .net "D0", 0 0, o0x7f670f7a1018;  0 drivers
+v0x1b225d0_0 .net "D1", 0 0, o0x7f670f7a1048;  0 drivers
+v0x1b22690_0 .net "Q", 0 0, L_0x1b241f0;  1 drivers
+v0x1b22760_0 .net "S", 0 0, o0x7f670f7a10a8;  0 drivers
+v0x1b22820_0 .net "Snegado", 0 0, L_0x1b23f10;  1 drivers
+v0x1b22930_0 .net "n0", 0 0, L_0x1b23fe0;  1 drivers
+v0x1b229f0_0 .net "n1", 0 0, L_0x1b24100;  1 drivers
+S_0x1af94c0 .scope module, "mux2a1_ec_bool" "mux2a1_ec_bool" 2 43;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "D0"
+    .port_info 1 /INPUT 1 "D1"
+    .port_info 2 /INPUT 1 "S"
+    .port_info 3 /OUTPUT 1 "Q"
+o0x7f670f7a12b8 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x1b24300 .functor NOT 1, o0x7f670f7a12b8, C4<0>, C4<0>, C4<0>;
+o0x7f670f7a1228 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x1b243a0 .functor AND 1, o0x7f670f7a1228, L_0x1b24300, C4<1>, C4<1>;
+o0x7f670f7a1258 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x1b244c0 .functor AND 1, o0x7f670f7a1258, o0x7f670f7a12b8, C4<1>, C4<1>;
+L_0x1b245b0 .functor OR 1, L_0x1b243a0, L_0x1b244c0, C4<0>, C4<0>;
+v0x1b22b30_0 .net "D0", 0 0, o0x7f670f7a1228;  0 drivers
+v0x1b22c10_0 .net "D1", 0 0, o0x7f670f7a1258;  0 drivers
+v0x1b22cd0_0 .net "Q", 0 0, L_0x1b245b0;  1 drivers
+v0x1b22d70_0 .net "S", 0 0, o0x7f670f7a12b8;  0 drivers
+v0x1b22e30_0 .net "Snegado", 0 0, L_0x1b24300;  1 drivers
+v0x1b22f40_0 .net "n0", 0 0, L_0x1b243a0;  1 drivers
+v0x1b23000_0 .net "n1", 0 0, L_0x1b244c0;  1 drivers
+S_0x1b09b50 .scope module, "mux2a1_sec" "mux2a1_sec" 2 9;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "D0"
+    .port_info 1 /INPUT 1 "D1"
+    .port_info 2 /INPUT 1 "S"
+    .port_info 3 /OUTPUT 1 "Q"
+o0x7f670f7a1438 .functor BUFZ 1, C4<z>; HiZ drive
+v0x1b231c0_0 .net "D0", 0 0, o0x7f670f7a1438;  0 drivers
+o0x7f670f7a1468 .functor BUFZ 1, C4<z>; HiZ drive
+v0x1b232a0_0 .net "D1", 0 0, o0x7f670f7a1468;  0 drivers
+v0x1b23360_0 .var "Q", 0 0;
+o0x7f670f7a14c8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x1b23400_0 .net "S", 0 0, o0x7f670f7a14c8;  0 drivers
+E_0x1b23140 .event edge, v0x1b23400_0, v0x1b231c0_0, v0x1b232a0_0;
+S_0x1b09cd0 .scope module, "mux_tb" "mux_tb" 3 5;
+ .timescale -9 -12;
+v0x1b23bb0_0 .var "dato0", 0 0;
+v0x1b23c70_0 .var "dato1", 0 0;
+v0x1b23d40_0 .net "salida", 0 0, L_0x1b246c0;  1 drivers
+v0x1b23e40_0 .var "seleccion", 0 0;
+S_0x1b23570 .scope module, "DUT2" "mux2a1_op_cond" 3 16, 2 62 0, S_0x1b09cd0;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "D0"
+    .port_info 1 /INPUT 1 "D1"
+    .port_info 2 /INPUT 1 "S"
+    .port_info 3 /OUTPUT 1 "Q"
+v0x1b237d0_0 .net "D0", 0 0, v0x1b23bb0_0;  1 drivers
+v0x1b238b0_0 .net "D1", 0 0, v0x1b23c70_0;  1 drivers
+v0x1b23970_0 .net "Q", 0 0, L_0x1b246c0;  alias, 1 drivers
+v0x1b23a40_0 .net "S", 0 0, v0x1b23e40_0;  1 drivers
+L_0x1b246c0 .functor MUXZ 1, v0x1b23bb0_0, v0x1b23c70_0, v0x1b23e40_0, C4<>;
+    .scope S_0x1b09b50;
+T_0 ;
+    %wait E_0x1b23140;
+    %load/v 8, v0x1b23400_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_0.0, 8;
+    %load/v 8, v0x1b231c0_0, 1;
+    %set/v v0x1b23360_0, 8, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0x1b232a0_0, 1;
+    %set/v v0x1b23360_0, 8, 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x1b09cd0;
+T_1 ;
+    %set/v v0x1b23bb0_0, 0, 1;
+    %set/v v0x1b23c70_0, 0, 1;
+    %set/v v0x1b23e40_0, 0, 1;
+    %movi 8, 7, 4;
+T_1.0 %cmp/s 0, 8, 4;
+    %jmp/0xz T_1.1, 5;
+    %add 8, 1, 4;
+    %delay 10000, 0;
+    %load/v 12, v0x1b23bb0_0, 1;
+    %load/v 13, v0x1b23c70_0, 1;
+    %load/v 14, v0x1b23e40_0, 1;
+    %addi 12, 1, 3;
+    %set/v v0x1b23bb0_0, 12, 1;
+    %set/v v0x1b23c70_0, 13, 1;
+    %set/v v0x1b23e40_0, 14, 1;
+    %jmp T_1.0;
+T_1.1 ;
+    %delay 10000, 0;
+    %vpi_call/w 3 31 "$finish" {0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x1b09cd0;
+T_2 ;
+    %vpi_call/w 3 35 "$display", "S D1 D0 | Q" {0 0};
+    %vpi_call/w 3 36 "$monitor", "%b %b %b | %b", v0x1b23e40_0, v0x1b23c70_0, v0x1b23bb0_0, v0x1b23d40_0 {0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "design.sv";
+    "testbench.sv";

@@ -1,0 +1,41 @@
+$date
+	Tue Sep 14 22:24:54 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module mux_tb $end
+$var wire 1 ! salida $end
+$var reg 1 " dato0 $end
+$var reg 1 # dato1 $end
+$var reg 1 $ seleccion $end
+$scope module DUT $end
+$var wire 1 " D0 $end
+$var wire 1 # D1 $end
+$var wire 1 $ S $end
+$var reg 1 ! Q $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+1#
+0"
+0!
+$end
+#10000
+1!
+1"
+#20000
+0#
+#25000
+0!
+1$
+#42000
+1!
+0$
+#52000

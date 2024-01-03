@@ -1,0 +1,98 @@
+#! /usr/share/iverilog-0.10.0/bin/vvp
+:ivl_version "0.10.0 (devel)" "(v0_9_6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+:vpi_module "v2009";
+S_0xad4810 .scope module, "sol6b_tb" "sol6b_tb" 2 5;
+ .timescale -9 -12;
+v0xb0d0b0_0 .var "dato0", 0 0;
+v0xb0d170_0 .var "dato1", 0 0;
+v0xb0d240_0 .var "dato2", 0 0;
+v0xb0d340_0 .net "salida", 0 0, v0xb0c670_0;  1 drivers
+v0xb0d3e0_0 .var "seleccion", 0 0;
+S_0xad4410 .scope module, "DUT" "sol6b" 2 10, 3 25 0, S_0xad4810;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "A"
+    .port_info 1 /INPUT 1 "B"
+    .port_info 2 /INPUT 1 "C"
+    .port_info 3 /INPUT 1 "D"
+    .port_info 4 /OUTPUT 1 "H"
+L_0xb0d520 .functor NOT 1, v0xb0d240_0, C4<0>, C4<0>, C4<0>;
+L_0xb0d5e0 .functor NOT 1, v0xb0d0b0_0, C4<0>, C4<0>, C4<0>;
+L_0xb0d6f0 .functor AND 1, L_0xb0d520, L_0xb0d5e0, C4<1>, C4<1>;
+L_0xb0d7b0 .functor OR 1, L_0xb0d6f0, v0xb0d170_0, C4<0>, C4<0>;
+v0xb0c8b0_0 .net "A", 0 0, v0xb0d3e0_0;  1 drivers
+v0xb0c970_0 .net "B", 0 0, v0xb0d0b0_0;  1 drivers
+v0xb0ca10_0 .net "Bneg", 0 0, L_0xb0d5e0;  1 drivers
+v0xb0cb10_0 .net "C", 0 0, v0xb0d170_0;  1 drivers
+v0xb0cbb0_0 .net "D", 0 0, v0xb0d240_0;  1 drivers
+v0xb0cca0_0 .net "Dneg", 0 0, L_0xb0d520;  1 drivers
+v0xb0cd60_0 .net "H", 0 0, v0xb0c670_0;  alias, 1 drivers
+v0xb0ce00_0 .net "n0", 0 0, L_0xb0d6f0;  1 drivers
+v0xb0cea0_0 .net "n1", 0 0, L_0xb0d7b0;  1 drivers
+S_0xaf6cd0 .scope module, "m1" "mux" 3 37, 3 8 0, S_0xad4410;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "D0"
+    .port_info 1 /INPUT 1 "D1"
+    .port_info 2 /INPUT 1 "S"
+    .port_info 3 /OUTPUT 1 "Q"
+v0xaf6ea0_0 .net "D0", 0 0, L_0xb0d7b0;  alias, 1 drivers
+v0xb0c5b0_0 .net "D1", 0 0, L_0xb0d5e0;  alias, 1 drivers
+v0xb0c670_0 .var "Q", 0 0;
+v0xb0c740_0 .net "S", 0 0, v0xb0d3e0_0;  alias, 1 drivers
+E_0xad5200 .event edge, v0xb0c740_0, v0xaf6ea0_0, v0xb0c5b0_0;
+    .scope S_0xaf6cd0;
+T_0 ;
+    %wait E_0xad5200;
+    %load/v 8, v0xb0c740_0, 1;
+    %cmpi/u 8, 0, 1;
+    %jmp/1 T_0.0, 6;
+    %cmpi/u 8, 1, 1;
+    %jmp/1 T_0.1, 6;
+    %jmp T_0.2;
+T_0.0 ;
+    %load/v 8, v0xaf6ea0_0, 1;
+    %set/v v0xb0c670_0, 8, 1;
+    %jmp T_0.2;
+T_0.1 ;
+    %load/v 8, v0xb0c5b0_0, 1;
+    %set/v v0xb0c670_0, 8, 1;
+    %jmp T_0.2;
+T_0.2 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0xad4810;
+T_1 ;
+    %vpi_call/w 2 18 "$dumpfile", "sol6b_tb.vcd" {0 0};
+    %vpi_call/w 2 19 "$dumpvars", 1'sb0, S_0xad4810 {0 0};
+    %end;
+    .thread T_1;
+    .scope S_0xad4810;
+T_2 ;
+    %set/v v0xb0d3e0_0, 0, 1;
+    %set/v v0xb0d0b0_0, 0, 1;
+    %set/v v0xb0d170_0, 0, 1;
+    %set/v v0xb0d240_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v0xb0d240_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v0xb0d170_0, 1, 1;
+    %set/v v0xb0d240_0, 0, 1;
+    %delay 10000, 0;
+    %set/v v0xb0d3e0_0, 1, 1;
+    %delay 10000, 0;
+    %set/v v0xb0d0b0_0, 1, 1;
+    %delay 10000, 0;
+    %vpi_call/w 2 43 "$finish" {0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "testbench.sv";
+    "design.sv";
